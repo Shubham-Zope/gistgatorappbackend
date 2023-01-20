@@ -30,12 +30,11 @@ def home():
 def uploadtranscript():
     # print(request.files)
     if request.method == 'POST':
-        im_dict_file = request.files
+        f = request.files['transcript']
+        global transfilename
+        transfilename = f.filename
+        f.save(f.filename)
         global ss
-        ss = str(im_dict_file.get('file').read(), 'UTF-8')
-        im_dict = request.form 
-        # print(request.form)
-        print(im_dict.get('fileName'))
         data = {
             'transcript': "File Posted Successfully"
         }
